@@ -1,489 +1,43 @@
-<div class="hearts">
-  <span class="heart h1"></span>
-  <span class="heart h2"></span>
-  <span class="heart h3"></span>
-  <span class="heart h4"></span>
-  <span class="heart h5"></span>
-</div>
-<!doctype html>
+ <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Happy Birthday, Nira</title>
   <meta name="theme-color" content="#0b1020" />
-  <style>
-    /* -----------------------------
-       Custom Animated Birthday Site
-       - Parent-safe (no love words)
-       - No photos
-       - Dark/Light toggle
-       - Unlock vault with code (2703)
-    ------------------------------ */
-
-    :root{
-      --bg0:#070a13;
-      --bg1:#0b1020;
-      --card:#0f1730cc;
-      --text:#eaf0ff;
-      --muted:#b7c3ff;
-      --accent:#7c5cff;
-      --accent2:#22c1ff;
-      --gold:#ffd166;
-      --border: rgba(255,255,255,.14);
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
-      --radius: 18px;
-
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-    }
-
-    [data-theme="light"]{
-      --bg0:#f8fbff;
-      --bg1:#eef5ff;
-      --card:#ffffffcc;
-      --text:#102041;
-      --muted:#3a4b75;
-      --accent:#6b5cff;
-      --accent2:#0ea5e9;
-      --gold:#f59e0b;
-      --border: rgba(16,32,65,.16);
-      --shadow: 0 18px 50px rgba(16,32,65,.12);
-    }
-
-    *{ box-sizing:border-box; }
-    html,body{ height:100%; }
-    body{
-      margin:0;
-      font-family:var(--font);
-      color:var(--text);
-      background:
-        radial-gradient(1200px 800px at 20% 10%, rgba(124,92,255,.30), transparent 60%),
-        radial-gradient(900px 700px at 85% 20%, rgba(34,193,255,.22), transparent 58%),
-        radial-gradient(700px 600px at 50% 90%, rgba(255,209,102,.16), transparent 55%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-    }
-
-    .wrap{
-      min-height:100%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding:24px 14px 56px;
-      position:relative;
-    }
-
-    /* floating background blobs */
-    .blob{
-      position:absolute;
-      filter: blur(30px);
-      opacity:.55;
-      transform: translateZ(0);
-      animation: drift 14s ease-in-out infinite;
-      pointer-events:none;
-    }
-    .blob.b1{ width:280px;height:280px; left:-60px; top:60px; background: rgba(124,92,255,.45); border-radius: 62% 38% 52% 48% / 45% 55% 45% 55%; }
-    .blob.b2{ width:320px;height:320px; right:-90px; top:120px; background: rgba(34,193,255,.36); border-radius: 42% 58% 45% 55% / 55% 45% 55% 45%; animation-duration: 18s; }
-    .blob.b3{ width:260px;height:260px; left:20%; bottom:-120px; background: rgba(255,209,102,.26); border-radius: 55% 45% 61% 39% / 45% 55% 45% 55%; animation-duration: 20s; }
-    @keyframes drift{
-      0%,100%{ transform: translate(0,0) scale(1); }
-      50%{ transform: translate(18px,-14px) scale(1.05); }
-    }
-
-    /* stars (only visible in dark mode; still fine in light) */
-    .stars{
-      position:absolute; inset:0;
-      background-image:
-        radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,.9), transparent 45%),
-        radial-gradient(1px 1px at 25% 75%, rgba(255,255,255,.7), transparent 45%),
-        radial-gradient(1px 1px at 60% 35%, rgba(255,255,255,.8), transparent 45%),
-        radial-gradient(1px 1px at 80% 80%, rgba(255,255,255,.7), transparent 45%),
-        radial-gradient(1px 1px at 45% 55%, rgba(255,255,255,.55), transparent 45%),
-        radial-gradient(1px 1px at 92% 18%, rgba(255,255,255,.55), transparent 45%),
-        radial-gradient(1px 1px at 35% 12%, rgba(255,255,255,.6), transparent 45%),
-        radial-gradient(1px 1px at 55% 92%, rgba(255,255,255,.5), transparent 45%);
-      opacity:.30;
-      animation: twinkle 4.8s ease-in-out infinite;
-      pointer-events:none;
-    }
-    @keyframes twinkle{
-      0%,100%{ opacity:.22; }
-      50%{ opacity:.38; }
-    }
-
-    .panel{
-      width:min(920px, 100%);
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-
-    .topbar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      padding:14px 16px;
-      border-bottom: 1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      backdrop-filter: blur(10px);
-    }
-
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      font-weight:700;
-      letter-spacing:.3px;
-    }
-    .dot{
-      width:12px; height:12px; border-radius:50%;
-      background: conic-gradient(from 180deg, var(--accent), var(--accent2), var(--gold), var(--accent));
-      box-shadow: 0 0 0 4px rgba(124,92,255,.14);
-    }
-
-    .actions{ display:flex; gap:10px; align-items:center; }
-
-    button{
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color:var(--text);
-      padding:10px 12px;
-      border-radius: 12px;
-      cursor:pointer;
-      transition: transform .12s ease, background .2s ease, border-color .2s ease;
-      font-weight:600;
-    }
-    button:hover{ transform: translateY(-1px); background: rgba(255,255,255,.10); }
-    button:active{ transform: translateY(0px) scale(.99); }
-    button.primary{
-      border-color: rgba(124,92,255,.55);
-      background: linear-gradient(135deg, rgba(124,92,255,.25), rgba(34,193,255,.14));
-    }
-
-    .content{
-      padding: 18px;
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap:16px;
-    }
-    @media (max-width: 860px){
-      .content{ grid-template-columns: 1fr; }
-    }
-
-    .card{
-      border:1px solid var(--border);
-      border-radius: var(--radius);
-      background: var(--card);
-      box-shadow: 0 12px 36px rgba(0,0,0,.18);
-      overflow:hidden;
-      position:relative;
-    }
-
-    .cardHeader{
-      padding:14px 14px 10px;
-      border-bottom:1px solid var(--border);
-      display:flex;
-      align-items:flex-start;
-      justify-content:space-between;
-      gap:12px;
-    }
-
-    .title{
-      margin:0;
-      font-size: 18px;
-      line-height: 1.2;
-    }
-    .subtitle{
-      margin:6px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height:1.35;
-    }
-
-    .cardBody{ padding:14px; }
-
-    /* Scene: Envelope/Gift */
-    .envelopeWrap{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      padding: 16px 0 6px;
-    }
-
-    .envelope{
-      width: 260px;
-      height: 170px;
-      position:relative;
-      transform: translateZ(0);
-      cursor:pointer;
-      user-select:none;
-      transition: transform .2s ease;
-    }
-    .envelope:hover{ transform: translateY(-2px); }
-    .env-back{
-      position:absolute; inset:0;
-      background: linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.04));
-      border:1px solid var(--border);
-      border-radius: 16px;
-      overflow:hidden;
-    }
-    .env-front{
-      position:absolute; inset:0;
-      border-radius: 16px;
-      overflow:hidden;
-    }
-    .tri{
-      position:absolute;
-      width:0; height:0;
-      border-left: 130px solid transparent;
-      border-right: 130px solid transparent;
-      border-top: 90px solid rgba(255,255,255,.10);
-      left:0; right:0; margin:auto;
-      top:40px;
-      filter: drop-shadow(0 10px 18px rgba(0,0,0,.15));
-    }
-    .flap{
-      position:absolute;
-      width:0; height:0;
-      border-left: 130px solid transparent;
-      border-right: 130px solid transparent;
-      border-bottom: 95px solid rgba(124,92,255,.22);
-      left:0; right:0; margin:auto;
-      top:-4px;
-      transform-origin: 50% 0%;
-      transform: rotateX(0deg);
-      transition: transform .7s cubic-bezier(.2,.8,.1,1);
-    }
-
-    .letter{
-      position:absolute;
-      left:18px; right:18px;
-      bottom: 18px;
-      height: 116px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.06));
-      transform: translateY(30px);
-      opacity:.0;
-      transition: transform .8s cubic-bezier(.2,.8,.1,1), opacity .5s ease;
-      padding: 12px 12px;
-    }
-    .letter h2{
-      margin:0;
-      font-size: 20px;
-      letter-spacing:.2px;
-    }
-    .letter p{
-      margin:6px 0 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height:1.35;
-    }
-    .hint{
-      margin:10px 0 0;
-      font-size:12px;
-      color: var(--muted);
-      opacity:.9;
-    }
-
-    .opened .flap{ transform: rotateX(160deg); }
-    .opened .letter{
-      transform: translateY(-22px);
-      opacity: 1;
-    }
-
-    /* Wish cards carousel */
-    .wishRow{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 10px;
-    }
-    .pill{
-      display:inline-flex;
-      gap:8px;
-      align-items:center;
-      padding: 8px 10px;
-      border-radius: 999px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      font-size: 12px;
-      color: var(--muted);
-    }
-    .pill b{ color: var(--text); }
-
-    .carousel{
-      display:grid;
-      gap:10px;
-      min-height: 172px;
-    }
-    .wishCard{
-      border:1px solid var(--border);
-      border-radius: 16px;
-      background: linear-gradient(135deg, rgba(124,92,255,.14), rgba(34,193,255,.08));
-      padding: 14px;
-      position:relative;
-      overflow:hidden;
-    }
-    .wishCard::after{
-      content:"";
-      position:absolute;
-      inset:-60px;
-      background: radial-gradient(200px 120px at 30% 40%, rgba(255,255,255,.12), transparent 70%);
-      transform: rotate(12deg);
-      pointer-events:none;
-    }
-    .wishCard h3{
-      margin:0;
-      font-size:16px;
-    }
-    .wishCard p{
-      margin:8px 0 0;
-      color: var(--muted);
-      line-height:1.45;
-      font-size: 13px;
-    }
-    .carBtns{
-      display:flex;
-      gap:10px;
-      margin-top: 10px;
-    }
-    .kbd{
-      font-size:12px;
-      color: var(--muted);
-      margin-top: 8px;
-    }
-
-    /* Wish jar */
-    .jarWrap{
-      display:grid;
-      grid-template-columns: 1fr;
-      gap:10px;
-    }
-    .jar{
-      height: 160px;
-      border-radius: 18px;
-      border:1px solid var(--border);
-      background:
-        radial-gradient(200px 120px at 40% 40%, rgba(255,255,255,.10), transparent 70%),
-        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
-      position:relative;
-      overflow:hidden;
-    }
-    .jarTop{
-      position:absolute; left:14px; right:14px; top:10px;
-      height: 24px;
-      border-radius: 12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.05);
-    }
-    .note{
-      position:absolute;
-      left: 16px;
-      right: 16px;
-      top: 50px;
-      padding: 10px 12px;
-      border-radius: 14px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.08);
-      transform: translateY(20px);
-      opacity:0;
-      transition: transform .5s ease, opacity .4s ease;
-      color: var(--muted);
-      font-size: 13px;
-      line-height:1.45;
-    }
-    .note.show{
-      transform: translateY(0px);
-      opacity: 1;
-    }
-
-    /* Vault (locked) */
-    .vaultGrid{
-      display:grid;
-      gap:10px;
-    }
-    .vault{
-      border:1px solid var(--border);
-      border-radius: 18px;
-      padding: 14px;
-      background: linear-gradient(135deg, rgba(255,209,102,.10), rgba(124,92,255,.10));
-      position:relative;
-      overflow:hidden;
-    }
-    .vault h3{ margin:0; font-size:16px; }
-    .vault p{ margin:8px 0 0; color: var(--muted); font-size:13px; line-height:1.45; }
-
-    .codeRow{
-      display:flex; gap:10px; flex-wrap:wrap;
-      margin-top: 12px;
-      align-items:center;
-    }
-    input[type="password"], input[type="text"]{
-      flex: 1 1 160px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border:1px solid var(--border);
-      background: rgba(255,255,255,.06);
-      color: var(--text);
-      outline:none;
-      font-weight:700;
-      letter-spacing: 2px;
-    }
-
-    .secret{
-      margin-top: 10px;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border:1px dashed rgba(255,255,255,.28);
-      background: rgba(255,255,255,.06);
-      display:none;
-    }
-    .secret.show{ display:block; }
-
-    /* Confetti */
-    canvas#confetti{
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events:none;
-      z-index: 999;
-    }
-
-    .footer{
-      padding: 10px 18px 18px;
-      color: var(--muted);
-      font-size: 12px;
-      text-align:center;
-      border-top:1px solid var(--border);
-      background: rgba(255,255,255,.03);
-    }
-
-    /* small helper */
-    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <canvas id="confetti"></canvas>
+  <!-- floating hearts layer -->
+  <div class="hearts" aria-hidden="true">
+    <span class="heart h1"></span>
+    <span class="heart h2"></span>
+    <span class="heart h3"></span>
+    <span class="heart h4"></span>
+    <span class="heart h5"></span>
+    <span class="heart h6"></span>
+    <span class="heart h7"></span>
+  </div>
+
+  <canvas id="confetti" aria-hidden="true"></canvas>
 
   <div class="wrap" id="app">
-    <div class="stars"></div>
-    <div class="blob b1"></div>
-    <div class="blob b2"></div>
-    <div class="blob b3"></div>
+    <div class="stars" aria-hidden="true"></div>
+    <div class="blob b1" aria-hidden="true"></div>
+    <div class="blob b2" aria-hidden="true"></div>
+    <div class="blob b3" aria-hidden="true"></div>
 
     <main class="panel" aria-label="Birthday Experience">
-
       <div class="topbar">
         <div class="brand">
           <span class="dot" aria-hidden="true"></span>
-          <span>Birthday Experience</span>
+          <div class="brandText">
+            <div class="brandTitle">Birthday Experience</div>
+            <div class="brandSub">Cute • calm • special</div>
+          </div>
         </div>
+
         <div class="actions">
           <button id="toggleTheme" class="primary" title="Switch theme">Theme</button>
           <button id="burst" title="Confetti">Confetti</button>
@@ -491,18 +45,18 @@
       </div>
 
       <section class="content">
-        <!-- Left: main experience -->
+        <!-- Left -->
         <div class="card">
           <div class="cardHeader">
             <div>
               <h1 class="title">Happy Birthday, <span id="name">Nira</span>!</h1>
               <p class="subtitle">
-                A small, animated birthday page — simple, calm, and made specially for you.
+                A cute, animated page — made to feel warm, light, and memorable.
               </p>
               <div class="wishRow">
-                <span class="pill">Birthday: <b>2008-03-27</b></span>
-                <span class="pill">This year: <b>Keep shining</b></span>
-                <span class="pill">Mode: <b id="modeLabel">Dark</b></span>
+                <span class="pill">Birthday: <b id="bdayLabel">2008-03-27</b></span>
+                <span class="pill">Mood: <b>Soft & Sparkly</b></span>
+                <span class="pill">Mode: <b id="modeLabel">Night</b></span>
               </div>
             </div>
           </div>
@@ -514,10 +68,13 @@
                 <div class="env-front">
                   <div class="tri" aria-hidden="true"></div>
                   <div class="flap" aria-hidden="true"></div>
-                  <div class="letter" id="letter">
-                    <h2>For Nira</h2>
+
+                  <div class="letter" id="letter" aria-live="polite">
+                    <h2>For <span id="toName">Nira</span></h2>
                     <p id="typeTarget"></p>
-                    <div class="hint">Tip: You can switch theme anytime. And yes — there’s a vault on the right.</div>
+                    <div class="hint">
+                      Tip: Theme works anytime. There’s a vault on the right (code hint: DDMM).
+                    </div>
                   </div>
                 </div>
               </div>
@@ -528,21 +85,23 @@
                 <h3 id="wishTitle">Today’s wish</h3>
                 <p id="wishText"></p>
               </div>
+
               <div class="carBtns">
                 <button id="prevWish">Prev</button>
                 <button id="nextWish" class="primary">Next</button>
               </div>
-              <div class="kbd">Optional: use ← / → keys after clicking once on the page.</div>
+
+              <div class="kbd">Optional: use ← / → keys after clicking once.</div>
             </div>
           </div>
         </div>
 
-        <!-- Right: jar + vault -->
+        <!-- Right -->
         <div class="card">
           <div class="cardHeader">
             <div>
               <h2 class="title">Wish Jar + Secret Vault</h2>
-              <p class="subtitle">No photos here — just animations and thoughtful words.</p>
+              <p class="subtitle">No photos — just cute effects + thoughtful words.</p>
             </div>
           </div>
 
@@ -552,7 +111,8 @@
                 <div class="jarTop"></div>
                 <div class="note" id="jarNote"></div>
               </div>
-              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+
+              <div class="rowBtns">
                 <button id="dropNote" class="primary">Drop a wish note</button>
                 <button id="clearNote">Clear</button>
               </div>
@@ -560,349 +120,49 @@
               <div class="vaultGrid">
                 <div class="vault">
                   <h3>Secret Vault (optional)</h3>
-                  <p>
-                    This part is locked. If someone else opens the website, they’ll just see “Locked”.
+                  <p class="small">
+                    Locked on purpose — if someone else opens the site, they only see “Locked”.
                     <br />
                     Code hint: <span class="mono">DDMM</span> (day + month).
                   </p>
+
                   <div class="codeRow">
                     <input id="code" type="password" inputmode="numeric" maxlength="4" placeholder="____" aria-label="Enter 4-digit code" />
                     <button id="unlock" class="primary">Unlock</button>
                   </div>
-                  <div class="secret" id="secret">
-                    <div style="font-weight:800; margin-bottom:6px;">Unlocked</div>
-                    <div style="color:var(--muted); line-height:1.55; font-size:13px;">
-                      Nira, may this year bring you calm confidence, good health, and many proud moments.
-                      Keep your standards high and your smile easy.
+
+                  <div class="secret" id="secret" aria-live="polite">
+                    <div class="badge">Unlocked</div>
+                    <div class="secretText">
+                      You’re genuinely impressive — keep your focus strong and your smile easy.
                       <br /><br />
-                      Small reminder: you are genuinely impressive — stay consistent and the results will follow.
+                      May this year bring you calm confidence, good health, and many proud moments.
                     </div>
                   </div>
                 </div>
 
-                <div class="vault" style="background: linear-gradient(135deg, rgba(34,193,255,.10), rgba(124,92,255,.10));">
+                <div class="vault alt">
                   <h3>Mini Surprise Button</h3>
-                  <p>Tap once for a “special effect” ending (still parent-safe).</p>
+                  <p class="small">Tap for a cute finale (still parent‑safe).</p>
                   <div class="codeRow">
                     <button id="finale" class="primary">Start Finale</button>
                     <button id="mute">Sound: Off</button>
                   </div>
-                  <p class="subtitle" style="margin-top:10px;">
-                    (No external links. Works offline too.)
-                  </p>
+                  <p class="subtitle" style="margin-top:10px;">(Offline friendly. No external links.)</p>
                 </div>
-
               </div>
             </div>
           </div>
-
         </div>
+
       </section>
 
       <div class="footer">
-        Made for <b>Nira</b> (Niranjani) • Birthday: <span class="mono">2008-03-27</span> • Theme toggle included
+        Made for <b id="footerName">Nira</b> • Birthday: <span class="mono" id="footerBday">2008-03-27</span> • Cute theme included
       </div>
     </main>
   </div>
 
-  <script>
-    // ---------- Settings ----------
-    const DISPLAY_NAME = "Nira";
-    const BIRTHDAY_ISO = "2008-03-27";
-    const VAULT_CODE = "2703"; // DDMM from 27 March
-
-    // Parent-safe message (typewriter)
-    const LETTER_TEXT =
-      "Wishing you a birthday full of good energy, peaceful moments, and big smiles. " +
-      "You’re smart, capable, and genuinely inspiring. " +
-      "Keep growing, keep shining — the best is coming.";
-
-    const wishes = [
-      { title: "Wish #1", text: "May your year be filled with confidence, focus, and happy surprises." },
-      { title: "Wish #2", text: "May you always have people around you who respect you and support you." },
-      { title: "Wish #3", text: "May your goals get easier because your discipline gets stronger." },
-      { title: "Wish #4", text: "May you laugh a lot, stress less, and feel proud of yourself often." },
-      { title: "Wish #5", text: "May your birthday feel special — calm, beautiful, and memorable." },
-      { title: "Wish #6", text: "May you keep that bright, positive vibe wherever you go." }
-    ];
-
-    const jarNotes = [
-      "A small wish: more peace, less pressure — and more reasons to smile.",
-      "You deserve a birthday that feels light, warm, and genuinely happy.",
-      "Keep your circle strong and your mind calm — you’ll do amazing.",
-      "Today is a good day to celebrate you — your effort, your growth, your journey.",
-      "Wish you health, confidence, and many proud moments this year."
-    ];
-
-    // ---------- DOM ----------
-    const root = document.documentElement;
-    const nameEl = document.getElementById("name");
-    const modeLabel = document.getElementById("modeLabel");
-    const toggleThemeBtn = document.getElementById("toggleTheme");
-    const burstBtn = document.getElementById("burst");
-
-    const envelope = document.getElementById("envelope");
-    const typeTarget = document.getElementById("typeTarget");
-
-    const wishTitle = document.getElementById("wishTitle");
-    const wishText = document.getElementById("wishText");
-    const prevWish = document.getElementById("prevWish");
-    const nextWish = document.getElementById("nextWish");
-
-    const jarNote = document.getElementById("jarNote");
-    const dropNote = document.getElementById("dropNote");
-    const clearNote = document.getElementById("clearNote");
-
-    const codeInput = document.getElementById("code");
-    const unlockBtn = document.getElementById("unlock");
-    const secretBox = document.getElementById("secret");
-
-    const finaleBtn = document.getElementById("finale");
-    const muteBtn = document.getElementById("mute");
-
-    // ---------- Init ----------
-    nameEl.textContent = DISPLAY_NAME;
-
-    // Theme: persist
-    const savedTheme = localStorage.getItem("nira_theme");
-    if (savedTheme === "light" || savedTheme === "dark") {
-      setTheme(savedTheme);
-    } else {
-      setTheme("dark");
-    }
-
-    function setTheme(t){
-      if (t === "light") {
-        document.body.setAttribute("data-theme", "light");
-        modeLabel.textContent = "Light";
-      } else {
-        document.body.setAttribute("data-theme", "dark");
-        modeLabel.textContent = "Dark";
-      }
-      localStorage.setItem("nira_theme", t);
-    }
-
-    toggleThemeBtn.addEventListener("click", () => {
-      const isLight = document.body.getAttribute("data-theme") === "light";
-      setTheme(isLight ? "dark" : "light");
-      gentlePulse();
-    });
-
-    // Envelope open + typewriter
-    let typed = false;
-    function openEnvelope(){
-      envelope.classList.add("opened");
-      if (!typed){
-        typed = true;
-        typewriter(LETTER_TEXT, typeTarget, 18);
-        confettiBurst(120);
-      }
-    }
-
-    envelope.addEventListener("click", openEnvelope);
-    envelope.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" || e.key === " ") openEnvelope();
-    });
-
-    // Wishes carousel
-    let wi = 0;
-    function renderWish(){
-      wishTitle.textContent = wishes[wi].title;
-      wishText.textContent = wishes[wi].text;
-    }
-    renderWish();
-
-    nextWish.addEventListener("click", () => { wi = (wi + 1) % wishes.length; renderWish(); });
-    prevWish.addEventListener("click", () => { wi = (wi - 1 + wishes.length) % wishes.length; renderWish(); });
-
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "ArrowRight") nextWish.click();
-      if (e.key === "ArrowLeft") prevWish.click();
-    });
-
-    // Wish jar
-    function showJarNote(){
-      const n = jarNotes[Math.floor(Math.random() * jarNotes.length)];
-      jarNote.textContent = n;
-      jarNote.classList.remove("show");
-      // reflow
-      void jarNote.offsetWidth;
-      jarNote.classList.add("show");
-    }
-    dropNote.addEventListener("click", () => { showJarNote(); sparkle(); });
-    clearNote.addEventListener("click", () => { jarNote.classList.remove("show"); });
-
-    // Vault
-    unlockBtn.addEventListener("click", () => {
-      const v = (codeInput.value || "").trim();
-      if (v === VAULT_CODE){
-        secretBox.classList.add("show");
-        confettiBurst(160);
-        codeInput.blur();
-      } else {
-        secretBox.classList.remove("show");
-        shake(unlockBtn);
-      }
-    });
-
-    // Confetti manual
-    burstBtn.addEventListener("click", () => confettiBurst(180));
-
-    // Finale + optional simple sound
-    let soundOn = false;
-    muteBtn.textContent = "Sound: Off";
-    muteBtn.addEventListener("click", () => {
-      soundOn = !soundOn;
-      muteBtn.textContent = soundOn ? "Sound: On" : "Sound: Off";
-    });
-
-    finaleBtn.addEventListener("click", async () => {
-      openEnvelope();
-      confettiBurst(260);
-      sparkle(18);
-      if (soundOn) beepMelody();
-    });
-
-    // ---------- Anim helpers ----------
-    function typewriter(text, el, speedMs){
-      el.textContent = "";
-      let i = 0;
-      const timer = setInterval(() => {
-        el.textContent += text[i] || "";
-        i++;
-        if (i >= text.length) clearInterval(timer);
-      }, speedMs);
-    }
-
-    function shake(el){
-      el.animate([
-        { transform: "translateX(0)" },
-        { transform: "translateX(-6px)" },
-        { transform: "translateX(6px)" },
-        { transform: "translateX(-4px)" },
-        { transform: "translateX(4px)" },
-        { transform: "translateX(0)" }
-      ], { duration: 360, easing: "ease-out" });
-    }
-
-    function gentlePulse(){
-      document.querySelector(".panel").animate([
-        { transform: "scale(1)" },
-        { transform: "scale(1.007)" },
-        { transform: "scale(1)" }
-      ], { duration: 420, easing: "ease-in-out" });
-    }
-
-    function sparkle(times=10){
-      for(let i=0;i<times;i++){
-        const s = document.createElement("div");
-        s.style.position = "fixed";
-        s.style.left = (Math.random()*100) + "vw";
-        s.style.top  = (Math.random()*100) + "vh";
-        s.style.width = "6px";
-        s.style.height = "6px";
-        s.style.borderRadius = "50%";
-        s.style.background = `radial-gradient(circle, rgba(255,255,255,.95), rgba(255,255,255,0))`;
-        s.style.pointerEvents = "none";
-        s.style.zIndex = 998;
-        document.body.appendChild(s);
-        s.animate([
-          { transform: "scale(0)", opacity: 0 },
-          { transform: "scale(1.6)", opacity: 1 },
-          { transform: "scale(0.2)", opacity: 0 }
-        ], { duration: 700 + Math.random()*400, easing: "ease-out" })
-        .onfinish = () => s.remove();
-      }
-    }
-
-    // ---------- Confetti (tiny canvas) ----------
-    const canvas = document.getElementById("confetti");
-    const ctx = canvas.getContext("2d");
-    let W, H, confetti = [];
-    function resize(){
-      W = canvas.width = window.innerWidth * devicePixelRatio;
-      H = canvas.height = window.innerHeight * devicePixelRatio;
-      canvas.style.width = window.innerWidth + "px";
-      canvas.style.height = window.innerHeight + "px";
-      ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0);
-    }
-    window.addEventListener("resize", resize);
-    resize();
-
-    function confettiBurst(count=150){
-      const colors = ["#7c5cff", "#22c1ff", "#ffd166", "#ffffff"];
-      for(let i=0;i<count;i++){
-        confetti.push({
-          x: Math.random() * window.innerWidth,
-          y: -20,
-          r: 2 + Math.random() * 4,
-          vx: (Math.random() - 0.5) * 5,
-          vy: 2 + Math.random() * 6,
-          rot: Math.random()*Math.PI,
-          vr: (Math.random()-0.5)*0.2,
-          c: colors[Math.floor(Math.random()*colors.length)],
-          life: 70 + Math.random()*60
-        });
-      }
-      if (!animating) animate();
-    }
-
-    let animating = false;
-    function animate(){
-      animating = true;
-      ctx.clearRect(0,0,window.innerWidth, window.innerHeight);
-      confetti = confetti.filter(p => p.life > 0);
-      for(const p of confetti){
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.06; // gravity
-        p.rot += p.vr;
-        p.life -= 1;
-
-        ctx.save();
-        ctx.translate(p.x, p.y);
-        ctx.rotate(p.rot);
-        ctx.fillStyle = p.c;
-        ctx.fillRect(-p.r, -p.r, p.r*2.2, p.r*1.3);
-        ctx.restore();
-      }
-
-      if (confetti.length > 0) requestAnimationFrame(animate);
-      else { animating = false; ctx.clearRect(0,0,window.innerWidth, window.innerHeight); }
-    }
-
-    // ---------- Simple beep melody (WebAudio) ----------
-    function beepMelody(){
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if(!AudioContext) return;
-      const ac = new AudioContext();
-      const notes = [523.25, 659.25, 783.99, 659.25, 698.46, 659.25, 523.25];
-      const now = ac.currentTime;
-
-      notes.forEach((f, idx) => {
-        const o = ac.createOscillator();
-        const g = ac.createGain();
-        o.type = "sine";
-        o.frequency.value = f;
-        g.gain.value = 0.0001;
-        o.connect(g);
-        g.connect(ac.destination);
-
-        const t0 = now + idx * 0.18;
-        const t1 = t0 + 0.14;
-        g.gain.setValueAtTime(0.0001, t0);
-        g.gain.exponentialRampToValueAtTime(0.06, t0 + 0.02);
-        g.gain.exponentialRampToValueAtTime(0.0001, t1);
-
-        o.start(t0);
-        o.stop(t1 + 0.02);
-      });
-
-      setTimeout(() => ac.close(), 2000);
-    }
-
-    // Start with a gentle hint
-    setTimeout(() => { renderWish(); }, 300);
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
