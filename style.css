@@ -1,0 +1,356 @@
+/* ===========================
+   WOW GIRLY THEME (Unique)
+   - dreamy gradient + glass
+   - sparkles + floating hearts
+   - glow buttons + cute cards
+=========================== */
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+:root{
+  --bg1:#ff5db1;
+  --bg2:#b36bff;
+  --bg3:#42d7ff;
+
+  --ink:#1b1024;
+  --text: rgba(255,255,255,.92);
+  --muted: rgba(255,255,255,.78);
+
+  --glass: rgba(255,255,255,.14);
+  --glass2: rgba(255,255,255,.10);
+  --border: rgba(255,255,255,.26);
+
+  --hot:#ff4fd8;
+  --lav:#b784ff;
+  --sky:#53dcff;
+  --lemon:#ffe66d;
+
+  --shadow: 0 22px 80px rgba(14, 8, 24, .48);
+  --radius: 22px;
+
+  --font: ui-rounded, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial;
+}
+
+html, body { height: 100%; }
+
+body{
+  margin: 0;
+  font-family: var(--font);
+  color: var(--text);
+  overflow-x: hidden;
+  background:
+    radial-gradient(1200px 800px at 10% 15%, rgba(255, 93, 177, .55), transparent 60%),
+    radial-gradient(900px 700px at 88% 20%, rgba(179, 107, 255, .45), transparent 55%),
+    radial-gradient(1000px 800px at 50% 100%, rgba(66, 215, 255, .35), transparent 55%),
+    linear-gradient(135deg, #140a22, #0b0a18);
+}
+
+/* soft moving glitter overlay */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.85), transparent 60%),
+    radial-gradient(2px 2px at 30% 80%, rgba(255,255,255,.65), transparent 60%),
+    radial-gradient(2px 2px at 55% 30%, rgba(255,255,255,.7), transparent 60%),
+    radial-gradient(2px 2px at 78% 60%, rgba(255,255,255,.75), transparent 60%),
+    radial-gradient(2px 2px at 92% 22%, rgba(255,255,255,.6), transparent 60%);
+  opacity: .35;
+  filter: blur(.3px);
+  animation: drift 10s ease-in-out infinite alternate;
+}
+
+@keyframes drift{
+  from{ transform: translate3d(-6px,-8px,0) scale(1.02); }
+  to  { transform: translate3d(8px,10px,0) scale(1.03); }
+}
+
+/* ===========================
+   Layout helpers
+=========================== */
+.container{
+  width: min(1050px, 92vw);
+  margin: 0 auto;
+  padding: 26px 0 64px;
+}
+
+.glass{
+  border: 1px solid var(--border);
+  background: linear-gradient(180deg, var(--glass), rgba(255,255,255,.06));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(14px);
+}
+
+header{
+  padding: 16px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap: 16px;
+  position: sticky;
+  top: 12px;
+  z-index: 50;
+}
+
+/* brand */
+.brand{
+  display:flex;
+  align-items:center;
+  gap: 12px;
+  min-width: 220px;
+}
+.logo{
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  background:
+    radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.85), transparent 60%),
+    linear-gradient(135deg, rgba(255,93,177,1), rgba(179,107,255,1), rgba(66,215,255,1));
+  box-shadow: 0 16px 40px rgba(255,93,177,.25);
+  position: relative;
+  overflow: hidden;
+}
+.logo::after{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: rotate(25deg) translateX(-60%);
+  animation: shine 2.8s ease-in-out infinite;
+  opacity: .7;
+}
+@keyframes shine{
+  0%{ transform: rotate(25deg) translateX(-70%); }
+  55%{ transform: rotate(25deg) translateX(70%); }
+  100%{ transform: rotate(25deg) translateX(70%); }
+}
+
+.brand h1{
+  margin:0;
+  font-size: 15px;
+  letter-spacing: .3px;
+}
+.brand p{
+  margin: 2px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ===========================
+   Hero
+=========================== */
+.hero{
+  margin-top: 18px;
+  padding: 22px;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(300px 180px at 18% 20%, rgba(255,93,177,.45), transparent 60%),
+    radial-gradient(280px 180px at 80% 22%, rgba(179,107,255,.40), transparent 62%),
+    radial-gradient(340px 220px at 55% 95%, rgba(66,215,255,.35), transparent 62%);
+  filter: blur(10px);
+  opacity: .9;
+}
+.hero > *{ position: relative; z-index: 1; }
+
+.title{
+  font-size: clamp(26px, 3.4vw, 44px);
+  line-height: 1.05;
+  margin: 0;
+}
+.subtitle{
+  margin: 10px 0 0;
+  color: var(--muted);
+  max-width: 60ch;
+}
+
+/* ===========================
+   Buttons (wow)
+=========================== */
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn{
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.10);
+  color: rgba(255,255,255,.95);
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-weight: 700;
+  letter-spacing: .2px;
+  transition: transform .12s ease, box-shadow .2s ease, filter .2s ease, background .2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,.14);
+}
+
+.btn-primary{
+  border: none;
+  color: #120a1f;
+  background: linear-gradient(90deg, var(--hot), var(--lav), var(--sky));
+  box-shadow: 0 18px 46px rgba(255,79,216,.18);
+}
+.btn-primary::after{
+  content:"";
+  position:absolute;
+  inset:-60%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+  transform: rotate(20deg) translateX(-60%);
+  animation: btnshine 2.6s ease-in-out infinite;
+}
+@keyframes btnshine{
+  0%{ transform: rotate(20deg) translateX(-70%); }
+  55%{ transform: rotate(20deg) translateX(70%); }
+  100%{ transform: rotate(20deg) translateX(70%); }
+}
+
+.btn-ghost{
+  background: rgba(0,0,0,.18);
+}
+
+/* ===========================
+   Cards + grid
+=========================== */
+.grid{
+  margin-top: 16px;
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 14px;
+}
+.col-6{ grid-column: span 6; }
+.col-12{ grid-column: span 12; }
+
+@media (max-width: 860px){
+  header{ position: relative; top: 0; }
+  .col-6{ grid-column: span 12; }
+}
+
+.card{
+  padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid rgba(255,255,255,.22);
+  background: linear-gradient(180deg, var(--glass2), rgba(255,255,255,.06));
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 60px rgba(0,0,0,.35);
+  position: relative;
+  overflow: hidden;
+}
+.card::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background: radial-gradient(420px 220px at 15% 10%, rgba(255,93,177,.20), transparent 60%);
+  opacity: .9;
+}
+.card > *{ position: relative; z-index: 1; }
+
+.card h2{
+  margin: 0 0 8px;
+  font-size: 18px;
+}
+.card p{
+  margin: 0;
+  color: var(--muted);
+}
+
+/* ===========================
+   Cute floating hearts (pure CSS)
+=========================== */
+.hearts{
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+  opacity: .22;
+}
+
+.heart{
+  position: absolute;
+  bottom: -80px;
+  width: 18px;
+  height: 18px;
+  transform: rotate(45deg);
+  background: linear-gradient(135deg, rgba(255,79,216,.9), rgba(255,230,109,.85));
+  border-radius: 4px;
+  filter: drop-shadow(0 10px 18px rgba(255,79,216,.18));
+  animation: floatUp linear infinite;
+}
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width: 18px;
+  height: 18px;
+  background: inherit;
+  border-radius: 999px;
+}
+.heart::before{ left: -9px; top: 0; }
+.heart::after{ top: -9px; left: 0; }
+
+@keyframes floatUp{
+  from { transform: translateY(0) rotate(45deg); opacity: 0; }
+  10%  { opacity: .85; }
+  to   { transform: translateY(-120vh) rotate(45deg); opacity: 0; }
+}
+
+/* Create a few hearts with different positions/speeds
+   Add <div class="hearts"><span class="heart h1"></span>...</div> in HTML */
+.h1{ left: 8%;  animation-duration: 11s; transform: rotate(45deg) scale(1.1); }
+.h2{ left: 22%; animation-duration: 14s; transform: rotate(45deg) scale(.9); }
+.h3{ left: 44%; animation-duration: 12s; transform: rotate(45deg) scale(1.25); }
+.h4{ left: 66%; animation-duration: 16s; transform: rotate(45deg) scale(1.0); }
+.h5{ left: 86%; animation-duration: 13s; transform: rotate(45deg) scale(.95); }
+
+/* ===========================
+   Forms
+=========================== */
+label{
+  display:block;
+  font-size: 12px;
+  color: rgba(255,255,255,.75);
+  margin: 10px 0 6px;
+}
+.input, textarea{
+  width: 100%;
+  border: 1px solid rgba(255,255,255,.24);
+  background: rgba(0,0,0,.18);
+  color: rgba(255,255,255,.92);
+  border-radius: 16px;
+  padding: 11px 12px;
+  outline: none;
+}
+.input:focus, textarea:focus{
+  border-color: rgba(83,220,255,.65);
+  box-shadow: 0 0 0 4px rgba(83,220,255,.14);
+}
+textarea{ min-height: 120px; resize: vertical; }
+
+/* ===========================
+   Footer
+=========================== */
+footer{
+  margin-top: 18px;
+  padding: 14px 18px;
+  color: rgba(255,255,255,.72);
+  font-size: 12px;
+}
