@@ -567,3 +567,17 @@ h1 {
   color: transparent;
   text-shadow: 0 0 30px rgba(255,118,181,0.3);
 }
+.card {
+  animation: fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
