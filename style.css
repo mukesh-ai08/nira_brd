@@ -502,3 +502,17 @@ button:hover {
   box-shadow: 0 0 15px rgba(255, 118, 181, 0.6);
   transform: scale(1.05);
 }
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,120,180,0.15), transparent);
+  animation: moveBg 10s linear infinite;
+}
+
+@keyframes moveBg {
+  0% { transform: translate(-10%, -10%); }
+  50% { transform: translate(10%, 10%); }
+  100% { transform: translate(-10%, -10%); }
+}
