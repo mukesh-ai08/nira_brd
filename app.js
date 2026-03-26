@@ -48,6 +48,20 @@ finalBtn.onclick = () => {
 closeBtn.onclick = () => {
   finalScreen.classList.remove('active');
 };
+finalBtn.onclick = () => {
+  finalScreen.classList.add('active');
+
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement('div');
+    confetti.className = 'confetti';
+    document.body.appendChild(confetti);
+
+    confetti.style.left = Math.random() * 100 + 'vw';
+    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+
+    setTimeout(() => confetti.remove(), 3000);
+  }
+};
 // ---------- DOM (with safety checks) ----------
 function $(id){ return document.getElementById(id); }
 
