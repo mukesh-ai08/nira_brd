@@ -6,16 +6,19 @@
   <title>Happy Birthday, Nira</title>
   <meta name="theme-color" content="#0b1020" />
   <link rel="stylesheet" href="style.css" />
- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
-<div class="final-screen" id="finalScreen">
-  <div class="final-content">
-    <h1 class="final-title">You are special, Nira ✨</h1>
-    <p class="final-sub">Keep smiling… always 💙</p>
-    <button class="final-close">✨ Thank You for Being You</button>
-  </div>
-</div>
+
 <body>
+  <!-- FULL SCREEN OVERLAY (kept inside body) -->
+  <div class="final-screen" id="finalScreen" aria-hidden="true">
+    <div class="final-content" role="dialog" aria-modal="true" aria-label="Final message">
+      <h1 class="final-title">You are special, <span id="finalName">Nira</span> ✨</h1>
+      <p class="final-sub">Keep smiling… always 💙</p>
+      <button class="final-close" type="button">✨ Thank You for Being You</button>
+    </div>
+  </div>
+
   <!-- floating hearts layer -->
   <div class="hearts" aria-hidden="true">
     <span class="heart h1"></span>
@@ -46,8 +49,8 @@
         </div>
 
         <div class="actions">
-          <button id="toggleTheme" class="primary" title="Switch theme">Theme</button>
-          <button id="burst" title="Confetti">Confetti</button>
+          <button id="toggleTheme" class="primary" type="button" title="Switch theme">Theme</button>
+          <button id="burst" type="button" title="Confetti">Confetti</button>
         </div>
       </div>
 
@@ -62,7 +65,7 @@
               </p>
               <div class="wishRow">
                 <span class="pill">Birthday: <b id="bdayLabel">2008-03-27</b></span>
-                <span class="pill">Mood: <b>Soft & Sparkly</b></span>
+                <span class="pill">Mood: <b>Soft &amp; Sparkly</b></span>
                 <span class="pill">Mode: <b id="modeLabel">Night</b></span>
               </div>
             </div>
@@ -79,7 +82,7 @@
                   <div class="letter" id="letter" aria-live="polite">
                     <h2>For <span id="toName">Nira</span></h2>
                     <p id="typeTarget"></p>
-                    <div class="hint">
+                    <div class="hint" id="openHint">
                       Tip: Theme works anytime. There’s a vault on the right (code hint: DDMM).
                     </div>
                   </div>
@@ -94,8 +97,8 @@
               </div>
 
               <div class="carBtns">
-                <button id="prevWish">Prev</button>
-                <button id="nextWish" class="primary">Next</button>
+                <button id="prevWish" type="button">Prev</button>
+                <button id="nextWish" class="primary" type="button">Next</button>
               </div>
 
               <div class="kbd">Optional: use ← / → keys after clicking once.</div>
@@ -120,8 +123,8 @@
               </div>
 
               <div class="rowBtns">
-                <button id="dropNote" class="primary">Drop a wish note</button>
-                <button id="clearNote">Clear</button>
+                <button id="dropNote" class="primary" type="button">Drop a wish note</button>
+                <button id="clearNote" type="button">Clear</button>
               </div>
 
               <div class="vaultGrid">
@@ -135,7 +138,7 @@
 
                   <div class="codeRow">
                     <input id="code" type="password" inputmode="numeric" maxlength="4" placeholder="____" aria-label="Enter 4-digit code" />
-                    <button id="unlock" class="primary">Unlock</button>
+                    <button id="unlock" class="primary" type="button">Unlock</button>
                   </div>
 
                   <div class="secret" id="secret" aria-live="polite">
@@ -152,9 +155,8 @@
                   <h3>Mini Surprise Button</h3>
                   <p class="small">Tap for a cute finale (still parent‑safe).</p>
                   <div class="codeRow">
-                    <button id="finale" class="primary">Start Finale</button>
-                    <button id="mute">Sound: Off</button>
-                
+                    <button id="finale" class="primary" type="button">Start Finale</button>
+                    <button id="mute" type="button">Sound: Off</button>
                   </div>
                   <p class="subtitle" style="margin-top:10px;">(Offline friendly. No external links.)</p>
                 </div>
@@ -162,17 +164,8 @@
             </div>
           </div>
         </div>
-
       </section>
-     <p class="hint">Tap to open ✉️</p>
-     
-<section class="final-message">
-  <h2>One Last Thing...</h2>
-  <p>
-    No matter where life takes you, 
-    may your days always be filled with smiles 🌸
-  </p>
-</section>
+
       <div class="footer">
         Made for <b id="footerName">Nira</b> • Birthday: <span class="mono" id="footerBday">2008-03-27</span> • Cute theme included
       </div>
