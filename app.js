@@ -36,7 +36,7 @@ const jarNotes = [
   "Wishing you good health, confidence, and many proud moments.",
   "May your year feel bright, organized, and full of happy energy."
 ];
-
+<button class="final-btn">Start Final</button>
 // ---------- DOM (with safety checks) ----------
 function $(id){ return document.getElementById(id); }
 
