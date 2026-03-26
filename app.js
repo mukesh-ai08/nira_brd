@@ -360,5 +360,6 @@ function init(){
   }
 
   // Small start hint
+ document.querySelector('.hint').style.display = 'none';
   setTimeout(() => { renderWish(); }, 300);
 }
