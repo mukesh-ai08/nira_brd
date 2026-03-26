@@ -516,3 +516,17 @@ body::before {
   50% { transform: translate(10%, 10%); }
   100% { transform: translate(-10%, -10%); }
 }
+.hint {
+  text-align: center;
+  font-size: 0.9rem;
+  color: #ffb6d9;
+  opacity: 0.8;
+  margin-top: 10px;
+  animation: pulseHint 1.8s infinite;
+}
+
+@keyframes pulseHint {
+  0% { opacity: 0.5; transform: scale(0.95); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.5; transform: scale(0.95); }
+}
