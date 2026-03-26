@@ -48,6 +48,9 @@ body{
   overflow-x:hidden;
 }
 
+body {
+  background: radial-gradient(circle at 20% 20%, #1a1f3c, #0b1020 70%);
+}
 /* background blobs */
 .wrap{
   min-height:100%;
