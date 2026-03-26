@@ -47,6 +47,9 @@ body{
     linear-gradient(180deg, var(--bg0), var(--bg1));
   overflow-x:hidden;
 }
+body {
+  font-family: 'Poppins', sans-serif;
+}
 
 body {
   background: radial-gradient(circle at 20% 20%, #1a1f3c, #0b1020 70%);
