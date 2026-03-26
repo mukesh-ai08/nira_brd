@@ -490,3 +490,7 @@ body {
   50% {background-position: 100%}
   100% {background-position: 0%}
 }
+h1 {
+  font-size: 2.8rem;
+  text-shadow: 0 0 20px rgba(255, 118, 181, 0.6);
+}a
