@@ -478,3 +478,15 @@ canvas#confetti{
   transform: translateY(-10px) scale(1.02);
   box-shadow: 0 20px 40px rgba(0,0,0,0.4);
 }
+
+body {
+  background: linear-gradient(-45deg, #0b1020, #1a1f3c, #2b2f77);
+  background-size: 400% 400%;
+  animation: gradientMove 10s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {background-position: 0%}
+  50% {background-position: 100%}
+  100% {background-position: 0%}
+}
