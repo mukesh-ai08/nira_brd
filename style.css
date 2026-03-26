@@ -559,3 +559,11 @@ button:hover {
   transform: translateY(-2px) scale(1.03);
   box-shadow: 0 10px 25px rgba(255,118,181,0.4);
 }
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(90deg, #ff7eb3, #7afcff);
+  -webkit-background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 30px rgba(255,118,181,0.3);
+}
