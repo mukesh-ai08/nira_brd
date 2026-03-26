@@ -37,6 +37,17 @@ const jarNotes = [
   "May your year feel bright, organized, and full of happy energy."
 ];
 <button class="final-btn">Start Final</button>
+const finalBtn = document.querySelector('.final-btn');
+const finalScreen = document.getElementById('finalScreen');
+const closeBtn = document.querySelector('.final-close');
+
+finalBtn.onclick = () => {
+  finalScreen.classList.add('active');
+};
+
+closeBtn.onclick = () => {
+  finalScreen.classList.remove('active');
+};
 // ---------- DOM (with safety checks) ----------
 function $(id){ return document.getElementById(id); }
 
