@@ -656,3 +656,18 @@ h1 {
     opacity: 1;
   }
 }
+.confetti {
+  position: fixed;
+  width: 6px;
+  height: 6px;
+  background: pink;
+  top: -10px;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
