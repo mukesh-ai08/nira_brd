@@ -494,3 +494,7 @@ h1 {
   font-size: 2.8rem;
   text-shadow: 0 0 20px rgba(255, 118, 181, 0.6);
 }a
+.heart {
+  animation: floatUp 6s linear infinite;
+  opacity: 0.6;
+}
